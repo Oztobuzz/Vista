@@ -1,0 +1,18 @@
+Một nhóm người đứng bên ngoài một chiếc xe màu đen với nhiều hành lý khác nhau.
+Hành lý bao quanh phương tiện trong khu vực đỗ xe ngầm
+Mọi người cố gắng nhét tất cả hành lý của mình vào một chiếc SUV.
+Chiếc xe thể thao đa dụng đậu trong gara công cộng, chật cứng cho một chuyến đi
+Một số người có hành lý ở gần một chiếc xe tải đang chở nó.
+
+người: [0.681, 0.242, 0.774, 0.694]
+người: [0.63, 0.222, 0.686, 0.516]
+người: [0.444, 0.233, 0.487, 0.34]
+cặp sách: [0.384, 0.696, 0.485, 0.914]
+cặp sách: [0.755, 0.413, 0.846, 0.692]
+vali: [0.758, 0.413, 0.845, 0.69]
+vali: [0.1, 0.497, 0.173, 0.579]
+xe đạp: [0.282, 0.363, 0.327, 0.442]
+xe ô tô: [0.786, 0.25, 0.848, 0.322]
+xe ô tô: [0.783, 0.27, 0.827, 0.335]
+xe ô tô: [0.86, 0.254, 0.891, 0.3]
+xe ô tô: [0.261, 0.101, 0.787, 0.626]

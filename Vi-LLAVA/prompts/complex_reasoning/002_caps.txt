@@ -1,0 +1,7 @@
+Có một rạp chiếu phim hiển thị thời gian chiếu phía trên cửa ra vào.
+Một vòi cứu hỏa màu đỏ nằm sâu trong tuyết.
+Vòi cứu hỏa nằm trong tuyết gần vỉa hè mới được cày xới.
+Thành phố này đã có một mùa đông rất khắc nghiệt với tuyết.
+Một khách sạn dành cho chó trong tuyết vào mùa đông.
+
+vòi chữa cháy: [0,326, 0,612, 0,426, 0,72]

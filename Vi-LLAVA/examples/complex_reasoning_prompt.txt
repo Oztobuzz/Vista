@@ -1,0 +1,94 @@
+Bạn là trợ lý hình ảnh AI có thể phân tích một hình ảnh duy nhất. Bạn nhận được 5 câu, mỗi câu mô tả cùng một hình ảnh mà bạn đang quan sát. Thêm vào đó, các vị trí của đối tượng cụ thể trong ảnh được cung cấp, cùng với tọa độ chi tiết. Các tọa độ này dưới dạng Hộp giới hạn, được biểu diễn thành (x1, y1, x2, y2) với các giá trị số thực từ 0 tới 1. Các giá trị này tương ứng với x trên cùng bên trái, trên cùng bên trái y, dưới cùng bên phải x và dưới cùng bên phải y.
+
+Nhiệm vụ là sử dụng những chú thích được cung cấp và thông tin hộp giới hạn, tạo ra một câu hỏi hợp lý về hình ảnh, và đưa ra câu trả lời chi tiết.
+
+Tạo các câu hỏi phức tạp ngoài việc mô tả khung cảnh.
+Để trả lời những câu hỏi như vậy, trước tiên bạn phải hiểu nội dung trực quan, sau đó dựa trên kiến thức hoặc lý luận nền tảng, giải thích lý do tại sao mọi việc lại diễn ra như vậy hoặc cung cấp hướng dẫn và trợ giúp theo yêu cầu của người dùng. Đặt câu hỏi mang tính thử thách bằng cách không đưa chi tiết nội dung trực quan vào câu hỏi để người dùng cần suy luận về điều đó trước.
+
+Thay vì đề cập trực tiếp đến tọa độ khung giới hạn, hãy sử dụng dữ liệu này để giải thích cảnh bằng ngôn ngữ tự nhiên. Bao gồm các chi tiết như số lượng đối tượng, vị trí của các đối tượng, vị trí tương đối giữa các đối tượng.
+
+Khi sử dụng thông tin từ chú thích và tọa độ, hãy giải thích trực tiếp cảnh đó và không đề cập đến nguồn thông tin là chú thích hoặc hộp giới hạn. Luôn trả lời như thể bạn đang nhìn thẳng vào hình ảnh.
+
+Mô tả:
+Một người đàn ông đeo nhiều cà vạt làm vẻ mặt ngốc nghếch.
+Một người đàn ông mặc áo sơ mi trắng đeo rất nhiều cà vạt.
+một người đàn ông đeo cà vạt tạo dáng chụp ảnh
+Một người đàn ông đeo nhiều chiếc cà vạt trên cổ.
+Một chàng trai mỉm cười khi đeo nhiều chiếc cà vạt.
+
+cà vạt: [0.574, 0.298, 0.752, 0.704]
+cà vạt: [0.464, 0.339, 0.639, 0.789]
+cà vạt: [0.349, 0.363, 0.563, 0.732]
+cà vạt: [0.259, 0.255, 0.668, 0.805]
+người: [0.019, 0.065, 0.962, 0.988]
+người: [0.0, 0.24, 0.214, 1.0]
+cà vạt: [0.316, 0.778, 0.443, 0.867]
+cà vạt: [0.386, 0.707, 0.496, 0.801]
+cà vạt: [0.251, 0.354, 0.402, 0.747]
+cà vạt: [0.44, 0.318, 0.63, 0.397]
+cà vạt: [0.566, 0.33, 0.655, 0.543]
+cà vạt: [0.25, 0.409, 0.359, 0.556]
+
+Suy luận phức tạp:
+Câu hỏi:
+Bức ảnh này có gì bất thường?
+===
+Trả lời:
+Trong ảnh, người đàn ông đeo tổng cộng 10 chiếc cà vạt quanh cổ. Điều này được coi là bất thường vì hiếm khi có người đeo nhiều chiếc cà vạt cùng một lúc. Trong bối cảnh điển hình, một người sẽ chỉ đeo một chiếc cà vạt. Biểu cảm khuôn mặt ngốc nghếch của người đàn ông cũng làm tăng thêm tính chất hài hước và độc đáo của hình ảnh.
+
+Mô tả:
+Một nhóm người đứng bên ngoài một chiếc xe màu đen với nhiều hành lý khác nhau.
+Hành lý bao quanh phương tiện trong khu vực đỗ xe ngầm
+Mọi người cố gắng nhét tất cả hành lý của mình vào một chiếc SUV.
+Chiếc xe thể thao đa dụng đậu trong gara công cộng, chật cứng cho một chuyến đi
+Một số người có hành lý ở gần một chiếc xe tải đang chở nó.
+
+người: [0.681, 0.242, 0.774, 0.694]
+người: [0.63, 0.222, 0.686, 0.516]
+người: [0.444, 0.233, 0.487, 0.34]
+cặp sách: [0.384, 0.696, 0.485, 0.914]
+cặp sách: [0.755, 0.413, 0.846, 0.692]
+vali: [0.758, 0.413, 0.845, 0.69]
+vali: [0.1, 0.497, 0.173, 0.579]
+xe đạp: [0.282, 0.363, 0.327, 0.442]
+xe ô tô: [0.786, 0.25, 0.848, 0.322]
+xe ô tô: [0.783, 0.27, 0.827, 0.335]
+xe ô tô: [0.86, 0.254, 0.891, 0.3]
+xe ô tô: [0.261, 0.101, 0.787, 0.626]
+
+Suy luận phức tạp:
+Câu hỏi:
+Những người này phải đối mặt với những thách thức gì?
+===
+Trả lời:
+Trong ảnh, một nhóm người đang đứng bên ngoài chiếc SUV màu đen trong khu vực đỗ xe, xung quanh là nhiều loại hành lý khác nhau, bao gồm cả vali và ba lô. Họ đang phải đối mặt với thử thách nhét tất cả hành lý của mình vào chiếc SUV màu đen. Có nhiều vali và ba lô cần được đóng gói, điều này cho thấy nhóm có một lượng đồ đạc đáng kể cần chứa. Họ có thể phải lập chiến lược và sắp xếp hành lý một cách hiệu quả để đảm bảo mọi thứ vừa vặn với xe. Ngoài ra, họ cần quan tâm đến sự thoải mái của hành khách và tầm nhìn khi lái xe nên việc bố trí hành lý không được cản trở tầm nhìn của người lái hoặc khiến hành khách khó chịu trong suốt chuyến đi.
+
+Mô tả:
+Một người đàn ông đang làm pizza trong bếp.
+Người đàn ông trong tạp dề đứng trước lò nướng với chảo và bakeware
+Một thợ làm bánh đang làm việc trong nhà bếp cán bột.
+Một người đứng cạnh bếp lò trong bếp.
+Một cái bàn với bánh nướng đang được làm và một người đứng gần tường với nồi và chảo treo trên tường.
+
+chai: [0.340, 0.563, 0.061, 0.135]
+bàn ăn: [0.002, 0.563, 0.542, 0.437]
+người: [0.607, 0.164, 0.171, 0.650]
+dao: [0.212, 0.584, 0.035, 0.067]
+cái tô: [0.049, 0.806, 0.106, 0.096]
+cái tô: [0.093, 0.673, 0.119, 0.097]
+lò nướng: [0.002, 0.385, 0.301, 0.230]
+người: [0.000, 0.615, 0.097, 0.086]
+cốc: [0.187, 0.638, 0.039, 0.080]
+cốc: [0.221, 0.627, 0.050, 0.084]
+cái tô: [0.244, 0.396, 0.041, 0.040]
+cái tô: [0.246, 0.267, 0.028, 0.037]
+bông cải xanh: [0.154, 0.714, 0.017, 0.013]
+thìa: [0.259, 0.600, 0.014, 0.044]
+bông cải xanh: [0.135, 0.688, 0.037, 0.026]
+bông cải xanh: [0.110, 0.694, 0.014, 0.011]
+lò nướng: [0.000, 0.494, 0.299, 0.232]
+cà rốt: [0.151, 0.696, 0.012, 0.011]
+bồn rửa: [0.777, 0.476, 0.191, 0.067]
+
+Suy luận phức tạp:
+

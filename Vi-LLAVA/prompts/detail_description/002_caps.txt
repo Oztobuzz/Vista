@@ -1,0 +1,15 @@
+Một người đàn ông giơ chiếc Wii-mote lên trên đầu trong khi một người khác nhìn vào.
+Một anh chàng và bạn của anh ta đang chơi Nintendo Wii.
+Một thanh niên đang cầm chiếc điều khiển trò chơi điện tử trên đầu.
+hai người đàn ông đứng trong phòng trong khi một người chơi wii mote
+Một số người đang đứng và chơi trò chơi điện tử.
+
+ghế sofa: [0.697, 0.759, 0.995, 1.0]
+bàn ăn: [0.426, 0.755, 1.0, 0.987]
+người: [0.082, 0.252, 0.342, 1.0]
+người: [0.399, 0.085, 0.742, 0.982]
+điều khiển từ xa: [0.477, 0.135, 0.516, 0.187]
+bồn rửa: [0.016, 0.501, 0.063, 0.52]
+cây cảnh: [0.798, 0.384, 0.888, 0.645]
+tủ lạnh: [0.305, 0.389, 0.414, 0.547]
+ghế: [0.72, 0.509, 0.858, 0.725]

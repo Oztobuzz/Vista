@@ -1,0 +1,18 @@
+Một bến cảng có rất nhiều thuyền bên cạnh một tòa nhà.
+Một chiếc xe đạp đậu trước một số chiếc thuyền ở bến tàu.
+Một chiếc xe đạp màu đỏ trước dòng du thuyền màu trắng đang neo đậu
+Một chiếc xe đạp nằm trước những chiếc thuyền nằm trước một tòa nhà dài.
+Xe đạp là phương tiện di chuyển trên đất liền tiện lợi khi bạn sống trên thuyền.
+
+xe đạp: [0,287, 0,641, 0,507, 0,874]
+xe đạp: [0,566, 0,667, 0,63, 0,731]
+thuyền: [0,318, 0,579, 0,575, 0,724]
+thuyền: [0,704, 0,607, 0,818, 0,727]
+thuyền: [0,818, 0,601, 0,942, 0,744]
+thuyền: [0,002, 0,53, 0,243, 0,71]
+thuyền: [0,541, 0,611, 0,668, 0,731]
+người: [0,778, 0,527, 0,797, 0,57]
+cốc: [0,708, 0,733, 0,724, 0,758]
+thuyền: [0,236, 0,532, 0,404, 0,64]
+thuyền: [0,81, 0,632, 0,836, 0,676]
+thuyền: [0,957, 0,526, 1,0, 0,752]
