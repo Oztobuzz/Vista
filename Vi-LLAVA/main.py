@@ -1,12 +1,9 @@
+import multiprocessing
 import os
 import google.generativeai as genai
 import json
 
 import argparse
-
-GOOGLE_API_KEY="AIzaSyCKTDDSbBY-EMb9FO33YgV16JXHblFMpVA"
-
-genai.configure(api_key=GOOGLE_API_KEY)
 
 def run_query(system_message, query, max_output_tokens=16000, temperature=0.5):
     system_message += query
@@ -55,68 +52,23 @@ def parse_bboxes(query, bboxes, categories, width, height):
         query += f"{category_name}: [{x:.3f}, {y:.3f}, {w:.3f}, {h:.3f}]\n"
     return query
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--task", type=str, required=True, 
-        choices=["conversation", "complex_reasoning", "detail_description"]
-    )
-    parser.add_argument("--dataset-path", type=str, required=True, default="COCO2017/val.json")
-    parser.add_argument("--prompt-folder", type=str, required=True, default="prompts/conversation")
-    parser.add_argument("--num-samples", type=int, required=True, default=10)
-    parser.add_argument("--output-path", type=str, required=True, default="conversation.json")
-    parser.add_argument("--max-output-tokens", type=int, required=True, default=16000)
-    parser.add_argument("--temperature", type=float, required=True, default=0.5)
-
-    args = parser.parse_args()
-    
-    task = args.task
-    dataset_path = args.dataset_path
-    prompt_folder = args.prompt_folder
-    num_samples = args.num_samples
-    output_path = args.output_path
-    max_output_tokens = args.max_output_tokens
-    temperature = args.temperature
-
-    # Load the system message
-    with open(f"{prompt_folder}/system_message.txt", "r") as f:
-        system_message = f.read()
-        system_message = system_message.strip()
-
-    # Load the conversation
-    N = 2
-
-    for i in range(N):
-        with open(f"{prompt_folder}/{i:03d}_caps.txt", "r") as f:
-            cap = f.read().strip()
-
-        with open(f"{prompt_folder}/{i:03d}_conv.txt", "r") as f:
-            conv = f.read().strip()
-        if task == "conversation":
-            system_message += f"\n\nMô tả:\n{cap}\n\nCác đoạn hội thoại:\n{conv}"
-        if task == "complex_reasoning":
-            system_message += f"\n\nMô tả:\n{cap}\n\nSuy luận phức tạp:\n{conv}"
-        if task == "detail_description":
-            system_message += f"\n\nMô tả:\n{cap}\n\nMô tả chi tiết:\n{conv}"
-
-    # Load the dataset
-    with open(dataset_path, "r") as f:
-        data = json.load(f)
+def process_func(i, api_key, process_ids):
+    print('API key:', api_key)
+    print('Number of samples:', len(process_ids))
+    genai.configure(api_key=api_key)
 
     # Load processed data
-    if os.path.exists(output_path):
-        with open(output_path, "r") as f:
+    os.makedirs(output_path, exist_ok=True)
+
+    output_gen_path = f"{output_path}/{task}_{i}.json"
+
+    if os.path.exists(output_gen_path):
+        with open(output_gen_path, "r") as f:
             gen_data = json.load(f)
     else:
         gen_data = []
 
-    cnt = 0
-
-    with open("COCO2017/categories.json", "r") as f:
-        categories = json.load(f)
-
-    for id in data.keys():
+    for id in process_ids:
         if id in [sample["id"] for sample in gen_data]:
             continue
         
@@ -176,9 +128,82 @@ if __name__ == '__main__':
             "conversation": conversation
         })
 
-        with open(output_path, "w") as f:
+        with open(output_gen_path, "w") as f:
             json.dump(gen_data, f, ensure_ascii=False, indent=4)
 
-        cnt += 1
-        if cnt == num_samples:
-            break
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--task", type=str, required=True, 
+        choices=["conversation", "complex_reasoning", "detail_description"]
+    )
+    parser.add_argument("--dataset-path", type=str, required=True, default="COCO2017/val.json")
+    parser.add_argument("--prompt-folder", type=str, required=True, default="prompts/conversation")
+    parser.add_argument("--output-path", type=str, required=True, default="conversation")
+    parser.add_argument("--max-output-tokens", type=int, required=True, default=16000)
+    parser.add_argument("--temperature", type=float, required=True, default=0.5)
+    parser.add_argument("--api-key-path", type=str, default="api-key.txt")
+
+    args = parser.parse_args()
+    
+    task = args.task
+    dataset_path = args.dataset_path
+    prompt_folder = args.prompt_folder
+    output_path = args.output_path
+    max_output_tokens = args.max_output_tokens
+    temperature = args.temperature
+    api_key_path = args.api_key_path
+
+    GOOGLE_API_KEYS = []
+
+    # Load the API key
+    with open(api_key_path, "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            GOOGLE_API_KEYS.append(line.strip())
+
+    # Load the system message
+    with open(f"{prompt_folder}/system_message.txt", "r") as f:
+        system_message = f.read()
+        system_message = system_message.strip()
+
+    # Load the conversation
+    N = 2
+
+    for i in range(N):
+        with open(f"{prompt_folder}/{i:03d}_caps.txt", "r") as f:
+            cap = f.read().strip()
+
+        with open(f"{prompt_folder}/{i:03d}_conv.txt", "r") as f:
+            conv = f.read().strip()
+        if task == "conversation":
+            system_message += f"\n\nMô tả:\n{cap}\n\nCác đoạn hội thoại:\n{conv}"
+        if task == "complex_reasoning":
+            system_message += f"\n\nMô tả:\n{cap}\n\nSuy luận phức tạp:\n{conv}"
+        if task == "detail_description":
+            system_message += f"\n\nMô tả:\n{cap}\n\nMô tả chi tiết:\n{conv}"
+
+    with open("COCO2017/categories.json", "r") as f:
+        categories = json.load(f)
+
+    # Load the dataset
+    with open(dataset_path, "r") as f:
+        data = json.load(f)
+
+    processes = []
+
+    ids = data.keys()
+
+    for idx, api_key in enumerate(GOOGLE_API_KEYS):
+        process_ids = [id for i, id in enumerate(ids) if i % len(GOOGLE_API_KEYS) == idx]
+        process = multiprocessing.Process(target=process_func, args=(idx, api_key, process_ids))
+        processes.append(process)
+
+    # Start all processes
+    for process in processes:
+        process.start()
+
+    # Wait for all processes to finish
+    for process in processes:
+        process.join()
