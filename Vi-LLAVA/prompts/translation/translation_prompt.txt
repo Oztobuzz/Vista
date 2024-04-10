@@ -1,0 +1,5 @@
+Please translate the following English string to Vietnamese, preserving the same format:
+
+English string: [insert English string here]
+
+Translate to Vietnamese:
