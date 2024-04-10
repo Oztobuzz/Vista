@@ -98,38 +98,41 @@ def process_func(i, api_key, process_ids):
             query = f"\n\nMô tả:\n{captions_lines}\n\n"
             parse_bboxes(query, bboxes, categories, width, height)
             query += "\nMô tả chi tiết:\n"
-
-        response = run_query(system_message, query, max_output_tokens, temperature)
         
-        if task in ["conversation", "complex_reasoning"]:
-            conversation = parse_conversation(response)
+        try:
+            response = run_query(system_message, query, max_output_tokens, temperature)
+        
+            if task in ["conversation", "complex_reasoning"]:
+                conversation = parse_conversation(response)
 
-        if task == "detail_description":
-            conversation = [
-                {
-                    "role": "user",
-                    "content": "Mô tả chi tiết của hình ảnh"
-                },
-                {
-                    "role": "assistant",
-                    "content": response
-                }
-            ]
+            if task == "detail_description":
+                conversation = [
+                    {
+                        "role": "user",
+                        "content": "Mô tả chi tiết của hình ảnh"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": response
+                    }
+                ]
 
-        gen_data.append({
-            "id": id,
-            "file_name": file_name,
-            "coco_url": coco_url,
-            "height": height,
-            "width": width,
-            "date_capture": date_capture,
-            "flickr_url": flickr_url,
-            "captions": captions,
-            "conversation": conversation
-        })
+            gen_data.append({
+                "id": id,
+                "file_name": file_name,
+                "coco_url": coco_url,
+                "height": height,
+                "width": width,
+                "date_capture": date_capture,
+                "flickr_url": flickr_url,
+                "captions": captions,
+                "conversation": conversation
+            })
 
-        with open(output_gen_path, "w") as f:
-            json.dump(gen_data, f, ensure_ascii=False, indent=4)
+            with open(output_gen_path, "w") as f:
+                json.dump(gen_data, f, ensure_ascii=False, indent=4)
+        except Exception as e:
+            print(f"Process {i}: Error at id {id}: {e}")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
