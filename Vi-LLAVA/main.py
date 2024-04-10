@@ -132,7 +132,7 @@ def process_func(i, api_key, process_ids):
             with open(output_gen_path, "w") as f:
                 json.dump(gen_data, f, ensure_ascii=False, indent=4)
         except Exception as e:
-            print(f"Error at id {id}: {e}")
+            print(f"Process {i}: Error at id {id}: {e}")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
