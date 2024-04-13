@@ -1,14 +1,19 @@
 import multiprocessing
 import os
+import time
 import google.generativeai as genai
 import json
+from tqdm import tqdm
 
 import argparse
+
+TIME_PER_REQUEST = 15
 
 def run_query(system_message, query, max_output_tokens=16000, temperature=0.5):
     system_message += query
     model = genai.GenerativeModel('gemini-pro')
     chat = model.start_chat(history=[])
+    st_time = time.time()
     response = chat.send_message(
         system_message, 
         safety_settings={
@@ -22,7 +27,11 @@ def run_query(system_message, query, max_output_tokens=16000, temperature=0.5):
         max_output_tokens=max_output_tokens,
         temperature=temperature)
     )
-
+    end_time = time.time()
+    if (end_time - st_time) < TIME_PER_REQUEST:
+        time.sleep(TIME_PER_REQUEST - (end_time - st_time))
+    else:
+        time.sleep(1)
     return response.text
 
 def parse_conversation(response):
@@ -68,7 +77,7 @@ def process_func(i, api_key, process_ids):
     else:
         gen_data = []
 
-    for id in process_ids:
+    for id in tqdm(process_ids):
         if id in [sample["id"] for sample in gen_data]:
             continue
         
