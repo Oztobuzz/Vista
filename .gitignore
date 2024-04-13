@@ -3,3 +3,4 @@ Vi-LLAVA/UIT-ViIC/*.json
 *.zip
 Vi-LLAVA/api-key.txt
 WIT/data
+*.ipynb
