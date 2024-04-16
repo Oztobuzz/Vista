@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 import argparse
 
-TIME_PER_REQUEST = 15
+TIME_PER_REQUEST = 8
 
 def run_query(system_message, query, max_output_tokens=16000, temperature=0.5):
     system_message += query
@@ -142,6 +142,7 @@ def process_func(i, api_key, process_ids):
                 json.dump(gen_data, f, ensure_ascii=False, indent=4)
         except Exception as e:
             print(f"Process {i}: Error at id {id}: {e}")
+            time.sleep(TIME_PER_REQUEST)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
