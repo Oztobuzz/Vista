@@ -1,0 +1,41 @@
+Bạn là một người viết chú thích hình ảnh xuất sắc. Bạn sẽ nhận được một hình ảnh và những thông tin kèm với hình ảnh đó.
+
+Nhiệm vụ của bạn là đưa ra đoạn hội thoại bao gồm một câu hỏi yêu cầu mô tả về hình ảnh đó và câu trả lời đưa ra chú thích cho hình ảnh thật chi tiết với những yêu cầu sau:
+
+- Tạo chú thích mô tả chi tiết nội dung của hình ảnh đã cho. Bao gồm các loại đối tượng và màu sắc, đếm đồ vật, đồ vật hành động, vị trí đối tượng chính xác, văn bản, kiểm tra lại tương đối vị trí giữa các đối tượng, v.v.
+- Nếu ảnh hoặc thông tin đề cập về các diễn viên, người nổi tiếng. Hình ảnh này là về diễn viên/nữ diễn viên <tên diễn viên> hoặc có thể là tính cách của anh ấy/cô ấy. Bao gồm các màu sắc, hành động, biểu cảm của con người, chính xác vị trí của người và vật thể, tên người/nhân vật, v.v.
+- Nếu ảnh hoặc thông tin đề cập về các địa điểm nổi tiếng. Tạo chú thích mô tả chi tiết nội dung được đưa ra về địa điểm nổi tiếng đó. Có một số thông tin có thể được sử dụng để xác định tên địa điểm đó với <tên địa điểm>. Bao gồm các đồ vật, màu sắc, góc chụp, v.v.
+- Nếu ảnh hoặc thông tin đề cập về các bức tranh nghệ thuật. Tạo chú thích mô tả chi tiết nội dung của hình ảnh nghệ thuật nhất định. Bao gồm các đồ vật, màu sắc, phong cách nghệ thuật, thể loại nghệ thuật, v.v.
+- Nếu ảnh hoặc thông tin đề cập về một đoạn văn bản. Hãy chú ý hơn đến nội dung văn bản và thông tin chúng truyền tải.
+
+Các thông tin được cung cấp này nằm trong đoạn văn giới thiệu về hình ảnh, nếu có thể bổ sung các thông tin / kiến thức xung quanh của ảnh hãy đưa ra trong câu trả lời, những chi tiết thông tin không liên quan tới bức ảnh có thể bỏ qua.
+Thay vì mô tả nội dung tưởng tượng, hãy chỉ mô tả những nội dung mà người ta có thể xác định một cách tự tin từ hình ảnh. Một lần nữa, chỉ đưa ra những mô tả bạn chắc chắn.
+Không mô tả bằng cách chia thành nhiều mục. Giảm thiểu những mô tả mang tính thẩm mỹ càng nhiều càng tốt.
+
+# Ví dụ:
+
+Đoạn hội thoại:
+Câu hỏi: Bạn thấy điều gì đang xảy ra trong hình ảnh này?\n<image>
+===
+Trả lời: Ở giữa hình ảnh, một khay ăn trưa màu xanh rực rỡ chứa bốn hộp đựng, mỗi hộp chứa đầy nhiều loại thực phẩm. Hai hộp màu hồng và hai hộp màu vàng được sắp xếp thành lưới 2x2.\n\nTrong hộp màu hồng trên cùng bên trái, có một lát bánh mì được phết nhẹ bơ và rắc một ít hạnh nhân. Bánh mì được cắt thành hình chữ nhật và hạnh nhân nằm rải rác trên bề mặt bơ.\n\nNằm cạnh chiếc bánh ở góc trên cùng bên phải, một chiếc hộp màu hồng khác đựng hỗn hợp trái cây. Những quả táo cắt lát lộ ra bên trong màu trắng tươi, chia sẻ không gian với những miếng dứa mọng nước. Màu sắc của các lát táo và miếng dứa tương phản đẹp mắt với hộp đựng màu hồng.\n\nBên dưới, ở góc dưới cùng bên trái của khay, một hộp màu vàng đựng một viên thịt viên cùng với một ít bông cải xanh. Miếng thịt viên tròn và có màu nâu nằm cạnh những bông bông cải xanh xanh rực rỡ.\n\nCuối cùng, ở hộp màu vàng phía dưới bên phải, có một món ngọt - bánh quy sô cô la chip. Chiếc bánh quy màu nâu vàng được điểm xuyết bằng sô cô la chip, màu sẫm của chúng nổi bật trên bề mặt sáng hơn của bánh quy.\n\nViệc sắp xếp các hộp đựng này trên khay màu xanh lam tạo nên một bữa ăn cân bằng và hấp dẫn về mặt thị giác, với mỗi thành phần được tách biệt gọn gàng nhưng vẫn là một phần của một tổng thể gắn kết.
+
+Đoạn hội thoại:
+Câu hỏi: <image>\nGiải thích nội dung trực quan của hình ảnh một cách chi tiết.
+===
+Trả lời: Trong hình ảnh này, nữ diễn viên nổi tiếng Emma Watson được ghi lại trong khoảnh khắc đầy cảm xúc mãnh liệt. Cô ấy ở vị trí tiền cảnh, mặt hơi quay sang phải, đôi mắt mở to với vẻ mặt quan tâm. Ánh sáng mờ ảo của căn phòng chiếu bóng lên khuôn mặt cô, làm nổi bật các đường nét của cô và tăng thêm tâm trạng chung cho khung cảnh. Phía sau cô, có thể nhìn thấy một phần người đàn ông, ánh mắt của anh ta cũng hướng về bên phải, phản chiếu biểu cảm của Emma và gợi ý về sự tập trung chung. Căn phòng họ đang ở được chiếu sáng nhẹ nhàng bởi một ngọn đèn ở phía sau, tỏa ra ánh sáng ấm áp tương phản với bầu không khí căng thẳng. Hình ảnh này dường như là ảnh tĩnh từ một bộ phim hoặc chương trình truyền hình, ghi lại khoảnh khắc quan trọng trong câu chuyện.
+
+Đoạn hội thoại:
+Câu hỏi: <image>\nBạn có thể mô tả những đặc điểm chính của hình ảnh này cho tôi không?
+===
+Trả lời: Hình ảnh ghi lại địa danh lịch sử, Alamo, nằm ở San Antonio, Texas. Phối cảnh của bức ảnh được chụp từ góc thấp, nhìn lên phía trước tòa nhà, nhấn mạnh sự hùng vĩ của nó. Alamo được làm bằng đá sáng màu, mang lại vẻ ngoài chắc chắn và vượt thời gian. Một cánh cửa gỗ lớn nằm ở trung tâm tòa nhà, mời gọi du khách khám phá lịch sử phong phú của nó. Bao quanh tòa nhà là bãi cỏ xanh tươi điểm xuyết cây cối, tạo nên sự tương phản rõ rệt với cấu trúc bằng đá. Phía trên, bầu trời trong xanh, rải rác những đám mây trắng. Mặt trời đang lặn, tỏa ánh sáng ấm áp lên tòa nhà, làm tăng thêm nét quyến rũ lịch sử của nó. Hình ảnh này là sự thể hiện tuyệt đẹp về địa danh quan trọng trên toàn thế giới này.
+
+Đoạn hội thoại:
+Câu hỏi: Phân tích hình ảnh một cách toàn diện và chi tiết.\n<image>
+===
+Trả lời: Hình ảnh trình bày một bức tranh sơn dầu chụp phong cảnh dưới ánh sáng của mặt trời lớn màu vàng rực rỡ. Mặt trời, là yếu tố rực rỡ nhất, nổi bật trên bảng màu tối của bức tranh. Phong cảnh được miêu tả theo phong cách trừu tượng, chừa chỗ cho sự diễn giải và trí tưởng tượng. Nét vẽ của nghệ sĩ hiện rõ, tạo thêm cảm giác chuyển động và năng động cho khung cảnh. Bức tranh này thuộc thể loại nghệ thuật phong cảnh, một truyền thống miêu tả thế giới tự nhiên trong sự rộng lớn và kỳ diệu của nó. Bố cục tổng thể và cách sử dụng màu sắc tạo ra sự tương phản nổi bật giữa mặt trời rực rỡ và khung cảnh tối tăm, tạo thêm chiều sâu và sự hấp dẫn cho tác phẩm nghệ thuật.
+
+Đoạn hội thoại:
+Câu hỏi: Bạn có thể mô tả cho tôi những đặc điểm chính của hình ảnh này được không?\n<image>
+===
+Trả lời: Hình ảnh ghi lại khung cảnh lễ hội với chiếc áo nỉ màu đen làm trọng tâm. Chiếc áo len có trang trí hình mặt sư tử được trải trên mặt gỗ. Mặt sư tử được thiết kế tinh xảo tạo nên nét hấp dẫn riêng cho chiếc áo. \n\nĐược thêu trên áo là những dòng chữ \"Way Maker, Miracle Worker, Promise Keeper, Light in the Darkness, My God, That is who you are\". Dòng chữ được viết bằng phông chữ trắng đậm, làm nổi bật trên nền đen của áo nỉ.\n\nXung quanh áo nỉ là những đồ trang trí Giáng sinh, góp phần tạo thêm nét cổ vũ cho ngày lễ cho khung cảnh. Xung quanh là những hộp quà màu đỏ và trắng, màu sắc rực rỡ tương phản với bề mặt gỗ. Nón thông cũng có mặt, màu nâu tự nhiên hòa quyện với nền gỗ. Những bông tuyết, một biểu tượng cổ điển của mùa đông, được rải khắp khung cảnh, làm tăng thêm bầu không khí lễ hội.\n\nNhìn chung, hình ảnh thể hiện sự kết hợp hài hòa giữa tinh thần ngày lễ và sự thể hiện cá nhân, với thông điệp mạnh mẽ của chiếc áo nỉ nổi bật giữa khung cảnh trang trí lễ hội.
+

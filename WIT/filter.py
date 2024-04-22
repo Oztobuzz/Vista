@@ -1,26 +1,52 @@
-import pandas as pd
+import os
 import json
+import hashlib  
 
-import argparse
+DATA_PATH = 'data/'
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+SUBSET = "test"
 
-    parser.add_argument("--input-tsv", type=str, required=True)
-    parser.add_argument("--output-json", type=str, required=True)
+MIN_HEIGHT = 336
+MIN_WIDTH = 336
 
-    args = parser.parse_args()
+ALLOWED_EXTENSIONS = ['image/jpeg', 'image/png']
 
-    input_tsv = args.input_tsv
-    output_json = args.output_json
+data = []
 
-    df = pd.read_csv(input_tsv, sep="\t")
+for i in range(5):
+    with open(DATA_PATH + f'vi_wit_v1.{SUBSET}.all-{i:05d}-of-00005.json', 'r') as f:
+        data_ = json.load(f)
+    
+    data.extend(data_)
 
-    df = df[df['language'] == 'vi']
+n_remove_resolution = 0
+for i, sample in enumerate(data):
+    if sample['original_height'] < MIN_HEIGHT or sample['original_width'] < MIN_WIDTH:
+        n_remove_resolution += 1
 
-    df = df.fillna("")
+n_remove_extension = 0
+for i, sample in enumerate(data):
+    if sample['mime_type'] not in ALLOWED_EXTENSIONS:
+        n_remove_extension += 1
 
-    data = df.to_dict('records')
+print('Remove resolution samples percentage:', n_remove_resolution / len(data) * 100)
+print('Remove extension samples percentage:', n_remove_extension / len(data) * 100)
 
-    with open(output_json, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+
+filtered_data = []
+
+for i, sample in enumerate(data):
+    if sample['original_height'] < MIN_HEIGHT or sample['original_width'] < MIN_WIDTH:
+        continue
+    if sample['mime_type'] not in ALLOWED_EXTENSIONS:
+        continue
+    image_url = sample['image_url']
+    m = hashlib.md5()
+    m.update(image_url.encode("utf-8"))
+    sample['id'] = str(int(m.hexdigest(), 16))[0:12]
+    filtered_data.append(sample)
+
+print('Number of samples:', len(filtered_data))
+
+with open(DATA_PATH + f'vi_wit_v1.{SUBSET}.filtered.json', 'w') as f:
+    json.dump(filtered_data, f, ensure_ascii=False, indent=4)
