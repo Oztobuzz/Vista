@@ -9,19 +9,20 @@ import argparse
 
 TIME_PER_REQUEST = 8
 
-def run_query(system_message, query, max_output_tokens=16000, temperature=0.5):
+def run_query(system_message, query, model_name, max_output_tokens=16000, temperature=0.5):
     system_message += query
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel(model_name)
     chat = model.start_chat(history=[])
     st_time = time.time()
+    safety_settings = [ 
+        {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"}, 
+        {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"}, 
+        {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"}, 
+        {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}, 
+    ]
     response = chat.send_message(
         system_message, 
-        safety_settings={
-            'HARM_CATEGORY_HARASSMENT': 'block_none',
-            'HARM_CATEGORY_HATE_SPEECH': 'block_none',
-            'HARM_CATEGORY_SEXUALLY_EXPLICIT': 'block_none',
-            'HARM_CATEGORY_DANGEROUS_CONTENT': 'block_none'
-        }, 
+        safety_settings=safety_settings,
         generation_config=genai.types.GenerationConfig(
         candidate_count=1,
         max_output_tokens=max_output_tokens,
@@ -100,16 +101,16 @@ def process_func(i, api_key, process_ids):
 
         if task == "complex_reasoning":
             query = f"\n\nMô tả:\n{captions_lines}\n\n"
-            parse_bboxes(query, bboxes, categories, width, height)
+            query = parse_bboxes(query, bboxes, categories, width, height)
             query += "\nSuy luận phức tạp:\n"
 
         if task == "detail_description":
             query = f"\n\nMô tả:\n{captions_lines}\n\n"
-            parse_bboxes(query, bboxes, categories, width, height)
+            query = parse_bboxes(query, bboxes, categories, width, height)
             query += "\nMô tả chi tiết:\n"
-        
+        # print('Query:', query)
         try:
-            response = run_query(system_message, query, max_output_tokens, temperature)
+            response = run_query(system_message, query, model_name, max_output_tokens, temperature)
         
             if task in ["conversation", "complex_reasoning"]:
                 conversation = parse_conversation(response)
@@ -142,6 +143,7 @@ def process_func(i, api_key, process_ids):
                 json.dump(gen_data, f, ensure_ascii=False, indent=4)
         except Exception as e:
             print(f"Process {i}: Error at id {id}: {e}")
+            print('Check here')
             time.sleep(TIME_PER_REQUEST)
 
 if __name__ == '__main__':
@@ -154,6 +156,7 @@ if __name__ == '__main__':
     parser.add_argument("--dataset-path", type=str, required=True, default="COCO2017/val.json")
     parser.add_argument("--prompt-folder", type=str, required=True, default="prompts/conversation")
     parser.add_argument("--output-path", type=str, required=True, default="conversation")
+    parser.add_argument("--model-name", type=str, required=True, default="gemini-pro")
     parser.add_argument("--max-output-tokens", type=int, required=True, default=16000)
     parser.add_argument("--temperature", type=float, required=True, default=0.5)
     parser.add_argument("--api-key-path", type=str, default="api-key.txt")
@@ -164,9 +167,12 @@ if __name__ == '__main__':
     dataset_path = args.dataset_path
     prompt_folder = args.prompt_folder
     output_path = args.output_path
+    model_name = args.model_name
     max_output_tokens = args.max_output_tokens
     temperature = args.temperature
     api_key_path = args.api_key_path
+
+    print("Arguments:", args)
 
     GOOGLE_API_KEYS = []
 
