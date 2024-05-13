@@ -44,6 +44,8 @@ if __name__ == '__main__':
 
     files = sorted(os.listdir(folder))
 
+    files = [f for f in files if f.endswith(".json")]
+
     cjk_cnt = 0
     
     bbox_cnt = 0
@@ -64,12 +66,12 @@ if __name__ == '__main__':
                 flag = True
 
                 if has_cjk(content):
-                    print(f"id {id}", "Has cjk", content)
+                    # print(f"id {id}", "Has cjk", content)
                     cjk_cnt += 1
                     flag = False
 
                 if has_bbox_format(content):
-                    print(f"id {id}", "Has bbox format", content)
+                    # print(f"id {id}", "Has bbox format", content)
                     bbox_cnt += 1
                     flag = False
                 
