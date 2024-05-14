@@ -1,14 +1,8 @@
-## Install packages and libraries
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Download dataset
 
-Download dataset from :[Link](https://drive.google.com/drive/folders/1brh6TFoUCtkfT0k4gexzE-KOdMs8KGw1?usp=sharing)
+Download dataset that we extracted, filtered from WIT dataset from this link :[Link](https://drive.google.com/drive/folders/1SzlM2nXwT37h1mt63lTHSC1T_e9fjLeF?usp=sharing)
 
-Extract and dataset placed in folders COCO2017/ and UIT-VilC/
+Extract and dataset placed in folders data/.
 
 ## Get Gemini API Keys
 
