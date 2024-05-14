@@ -10,7 +10,9 @@ from tqdm import tqdm
 
 import argparse
 
-TIME_PER_REQUEST = 15
+Image.MAX_IMAGE_PIXELS = None
+
+TIME_PER_REQUEST = 10
 
 def run_query(system_message, query, image_url, model_name, max_output_tokens=16000, temperature=0.5):
     st_time = time.time()
@@ -76,11 +78,29 @@ def process_func(process_idx, api_key, process_ids):
 
     output_gen_path = f"{output_path}/{subset}_{process_idx}.json"
 
+    url_error_path = f"{output_path}/url_error_{subset}_{process_idx}.txt"
+
+    prompt_error_path = f"{output_path}/prompt_error_{subset}_{process_idx}.txt"
+
     if os.path.exists(output_gen_path):
         with open(output_gen_path, "r") as f:
             gen_data = json.load(f)
     else:
         gen_data = []
+
+    if os.path.exists(url_error_path):
+        with open(url_error_path, "r") as f:
+            url_error_ids = f.readlines()
+            url_error_ids = [int(id.strip()) for id in url_error_ids]
+    else:
+        url_error_ids = []
+
+    if os.path.exists(prompt_error_path):
+        with open(prompt_error_path, "r") as f:
+            prompt_error_ids = f.readlines()
+            prompt_error_ids = [int(id.strip()) for id in prompt_error_ids]
+    else:
+        prompt_error_ids = []
 
     cnt = 0
 
@@ -88,6 +108,12 @@ def process_func(process_idx, api_key, process_ids):
         # if cnt >= 5:
         #     break
         if id in [sample["id"] for sample in gen_data]:
+            continue
+
+        if id in url_error_ids:
+            continue
+
+        if id in prompt_error_ids:
             continue
         
         sample = data[i]
@@ -128,7 +154,19 @@ def process_func(process_idx, api_key, process_ids):
             cnt += 1
         except Exception as e:
             print(f"Process {process_idx}: Error at id {id}: {e}")
-            time.sleep(TIME_PER_REQUEST)
+
+            if "Can not get image from url" in str(e):
+                print("Can not get image from url", id)
+                url_error_ids.append(id)
+                with open(url_error_path, "w") as f:
+                    f.write("\n".join([str(id) for id in url_error_ids]))
+            elif "Check the `response.prompt_feedback` to see if the prompt was blocked." in str(e):
+                print("Prompt was blocked", id, query)
+                prompt_error_ids.append(id)
+                with open(prompt_error_path, "w") as f:
+                    f.write("\n".join([str(id) for id in prompt_error_ids]))
+            else:
+                time.sleep(TIME_PER_REQUEST)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
