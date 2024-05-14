@@ -22,6 +22,8 @@ Curation process involved removing any Han, Japanese, and Korean characters. The
 
 [HuggingFace Dataset](https://huggingface.co/datasets/Vi-VLM/Vista)
 
+**Report:** Coming Soon
+
 ## Dataset Structure
 
 The dataset is structured into 5 subsets:
@@ -99,7 +101,6 @@ The dataset is released under the [MIT license](https://opensource.org/license/M
 ## Additional Information
 
 - **Organization:** [Vietnamese-VLM](https://huggingface.co/Vi-VLM)
-- **Report:** Coming Soon
 
 ## Citation Information
 
