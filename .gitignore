@@ -2,5 +2,7 @@ Vi-LLAVA/COCO2017/*.json
 Vi-LLAVA/UIT-ViIC/*.json
 *.zip
 Vi-LLAVA/api-key.txt
+Vi-LLAVA/api-key-2.txt
+Vi-LLAVA/val_complex_reasoning/*.json
 WIT/data/*.json
-*.ipynb
+
