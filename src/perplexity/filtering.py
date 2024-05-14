@@ -1,6 +1,3 @@
-import os
-os.environ["PYTHONPATH"] = "/content/vi-data-filtering/data_filtering"
-
 from tqdm import tqdm
 import sentencepiece
 import kenlm
@@ -8,7 +5,7 @@ from datasets import Dataset
 from .document_modification import ModifyingDocuments
 
 class FilteringPerplexity:
-    def __init__(self, sentencepiece_model_path, kenlm_model_path, num_proc):
+    def __init__(self, sentencepiece_model_path, kenlm_model_path, num_proc=2):
         self.sentencepiece_model = load_sentencepiece_model(sentencepiece_model_path)
         self.kenlm_model = load_kenlm_model(kenlm_model_path)
         self.num_proc = num_proc
@@ -28,7 +25,7 @@ class FilteringPerplexity:
     def _compute_perplexity(self, example, conversation_feature_name="conversation", content_feature_name="content"):
         check_document = example[conversation_feature_name]
         score = self._compute_perplexity_score(
-                check_document[-1][content_feature_name], self.sentencepiece_model, self.kenlm_model
+                check_document[-1][content_feature_name]
         )
         example["perplexity"] = score
         return example
@@ -55,7 +52,6 @@ class FilteringPerplexity:
         pp_score = 10.0 ** (-doc_log_score / doc_length)
         pp_score = round(pp_score, 1)
         return pp_score
-
 
 def load_sentencepiece_model(path_sentencepiece_model):
     sentencepiece_model = sentencepiece.SentencePieceProcessor()
