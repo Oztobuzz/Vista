@@ -1,0 +1,4 @@
+fasttext
+https://github.com/kpu/kenlm/archive/master.zip
+emoji==1.6.1
+datasets
