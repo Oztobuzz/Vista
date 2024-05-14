@@ -4,6 +4,8 @@
 
 > "700.000 Vietnamese vision-language samples open-source dataset"
 
+## Overview
+
 This dataset contains over 700,000 Vietnamese vision-language samples, created by Gemini Pro. We employed several prompt engineering techniques: few-shot learning, caption-based prompting and image-based prompting.
 
 - For the COCO dataset, we generated data using Llava-style prompts
