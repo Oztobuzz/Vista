@@ -1,16 +1,19 @@
-# LVM_news
-
-# Related links
-- [Research table](https://docs.google.com/spreadsheets/d/1vyrTQXRajDJKLXUbnCXR9W2y6laMAA-QIVyfEFwZK90)
-- [Plan](https://docs.google.com/spreadsheets/d/1YYDdRC7O1qT5ohtrKYfYk_c3d_lVyu_1yXrUHG4IXYw)
-- [Data links](https://docs.google.com/spreadsheets/d/1lstqYdnrjCtzUT2nCCcNZ3iVba6ynOAnp3CegbBnas4)
+# Vista
 
 ## Data process
+
+### Vi-LLAVA
+
+Follow the instructions in [Vi-LLAVA/](https://github.com/Oztobuzz/Vista/tree/main/Vi-LLAVA) folder.
 
 ### Translate ShareGPT4V
 ```bash
 bash scripts/translate_shareGPT4V.sh
 ```
+
+### WIT
+
+Follow the instructions in [WIT/](https://github.com/Oztobuzz/Vista/tree/main/WIT) folder.
 
 ### Filtering perplexity
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Oztobuzz/Vista/blob/main/examples/filter_perplexity.ipynb)
