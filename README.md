@@ -96,7 +96,7 @@ The dataset is released under the [MIT license](https://opensource.org/license/M
 
 ## Additional Information
 
-- **Repository:** [Vi-VLM](https://github.com/Oztobuzz/LVM_news)
+- **Organization:** [Vietnamese-VLM](https://huggingface.co/Vi-VLM)
 - **Report:** Coming Soon
 
 ## Citation Information
